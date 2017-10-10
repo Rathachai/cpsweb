@@ -110,10 +110,10 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 				  <div class="panel-heading">
-					<h3 class="panel-title">Test 'kmitl/cie/g0/temp' </h3>
+					<h3 class="panel-title">Control</h3>
 				  </div>
 				  <div class="panel-body">
-					<button type="button" class="btn btn-lg btn-primary btn-block" onclick="publishFakeMessage();">Publish Test Data</button>
+					<button type="button" class="btn btn-lg btn-primary btn-block" onclick="controlFan();">Turn on Fan</button>
 				  </div>
 				</div>
 			</div>
@@ -175,10 +175,10 @@
 	</script>
 	
 	<script>
-		function publishFakeMessage(){
+		function controlFan(){
 			var fake = Math.floor(20+Math.random()*10);
 			message = new Paho.MQTT.Message(fake+"");
-			message.destinationName = "kmitl/cie/g0/temp";
+			message.destinationName = "kmitl/cie/g0/fan";
 			client.send(message);
 		}
 	</script>
