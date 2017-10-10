@@ -165,7 +165,7 @@
 		function onMessageArrived(message) {
 		  console.log("onMessageArrived:"+message.payloadString);
 		  switch(message.destinationName){
-			case "kmitl/cie/random/x1": $("#temp").html(message.payloadString); break;
+			case "kmitl/cie/g0/temp": $("#temp").html(message.payloadString); break;
 			case "kmitl/cie/random/x1": $("#x1").html(message.payloadString); break;
 			case "kmitl/cie/random/x2": $("#x2").html(message.payloadString); break;
 		  }
