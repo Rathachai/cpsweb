@@ -177,7 +177,7 @@
 	<script>
 		function controlFan(){
 			var fake = Math.floor(20+Math.random()*10);
-			message = new Paho.MQTT.Message(fake+"");
+			message = new Paho.MQTT.Message("1");
 			message.destinationName = "kmitl/cie/g0/fan";
 			client.send(message);
 		}
