@@ -130,14 +130,17 @@
 	
 	<script>
 		// Create a client instance
-		var client = new Paho.MQTT.Client("broker.hivemq.com", 8000, "ABC1234566");
+		var client = new Paho.MQTT.Client("iot.eclipse.org", 443, "ABC1234566");
 
 		// set callback handlers
 		client.onConnectionLost = onConnectionLost;
 		client.onMessageArrived = onMessageArrived;
 
 		// connect the client
-		client.connect({onSuccess:onConnect});
+		client.connect({
+			onSuccess:onConnect, 
+			useSSL: true
+			});
 
 
 		// called when the client connects
