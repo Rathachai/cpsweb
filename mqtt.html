@@ -110,10 +110,10 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 				  <div class="panel-heading">
-					<h3 class="panel-title">In CIE Lab</h3>
+					<h3 class="panel-title">Test 'kmitl/cie/g0/temp' </h3>
 				  </div>
 				  <div class="panel-body">
-					<span id="temp" class="mqtt-value">0</span>°C
+					<button type="button" class="btn btn-lg btn-primary btn-block" onclick="publishFakeMessage();">Publish Test Data</button>
 				  </div>
 				</div>
 			</div>
@@ -125,6 +125,7 @@
 			<br/>
 			<a href="https://cie.kmitl.ac.th/" target="_blank">CIE KMITL</a>
 		</div>
+
 		
 	</div>
 	
@@ -147,7 +148,7 @@
 		function onConnect() {
 		  // Once a connection has been made, make a subscription and send a message.
 		  console.log("onConnect");
-		  client.subscribe("kmitl/cie");
+		  client.subscribe("kmitl/cie/#");
 		  message = new Paho.MQTT.Message("Hello");
 		  message.destinationName = "World";
 		  client.send(message);
@@ -163,7 +164,20 @@
 		// called when a message arrives
 		function onMessageArrived(message) {
 		  console.log("onMessageArrived:"+message.payloadString);
-		  $("#temp").html(message.payloadString);
+		  switch(message.destinationName){
+			case "kmitl/cie/g0/temp": $("#temp").html(message.payloadString); break;
+		  }
+		  
+		}
+		
+	</script>
+	
+	<script>
+		function publishFakeMessage(){
+			var fake = Math.floor(20+Math.random()*10);
+			message = new Paho.MQTT.Message(fake+"");
+			message.destinationName = "kmitl/cie/g0/temp";
+			client.send(message);
 		}
 	</script>
 	
